@@ -1,0 +1,56 @@
+public class App {
+
+    public static int  printMazePathHurdle(int arr[][], int row,int col,int notFromRow,int notFromCol){
+
+        if( row == arr.length-1 && col == arr[0].length-1){
+            return 1;
+        }
+        if(row == arr.length || col == arr[0].length){
+            return 0;
+        }
+        if(row==notFromRow && col==notFromCol){
+            return 0;
+        }
+
+        int countFromRight = printMazePathHurdle(arr, row+1, col,notFromRow,notFromCol);
+        int countFromDown = printMazePathHurdle(arr, row, col+1,notFromRow,notFromCol);
+
+        return countFromDown + countFromRight;
+
+    }
+
+
+    public static int  printMazePathHurdle_Method_2(int arr[][], int row,int col){
+
+        if( row == arr.length-1 && col == arr[0].length-1){
+            return 1;
+        }
+        if(row == arr.length || col == arr[0].length){
+            return 0;
+        }
+        if(arr[row][col]==1){
+            return 0;
+        }
+
+        int countFromRight = printMazePathHurdle_Method_2(arr, row+1, col);
+        int countFromDown = printMazePathHurdle_Method_2(arr, row, col+1);
+
+        return countFromDown + countFromRight;
+
+    }
+
+    public static void main(String[] args) throws Exception {
+        // method 1
+        int arr[][] = new int[3][3];
+        int res =printMazePathHurdle(arr, 0, 0,1,1);
+        System.out.println(res);
+
+
+        // method 2
+
+        arr[1][1] = 1;
+        int res_2 =printMazePathHurdle_Method_2(arr, 0, 0);
+        System.out.println(res_2);
+
+    }
+}

@@ -1,0 +1,24 @@
+public class App {
+
+    public static void printMazePath(int arr[][], int row,int col,String psf){
+
+        if(row==arr.length-1 && col==arr[0].length-1){
+            System.out.println(psf);
+        }
+        if(row==arr.length || col==arr[0].length){
+            // System.out.println(0);
+            return;
+        }
+
+        printMazePath(arr, row+1, col, psf+'R');
+        printMazePath(arr, row, col+1, psf+'D');
+
+    }
+
+
+    public static void main(String[] args) throws Exception {
+        // System.out.println("Hello, World!");
+        int arr[][] = new int[3][3];
+        printMazePath(arr, 0, 0, "");
+    }
+}
